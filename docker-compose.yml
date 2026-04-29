@@ -1,0 +1,29 @@
+services:
+  mongo:
+    image: mongo:latest
+    container_name: casa-control-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: casa-control-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/casa_control_imoveis
+
+  frontend:
+    build: ./frontend
+    container_name: casa-control-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:

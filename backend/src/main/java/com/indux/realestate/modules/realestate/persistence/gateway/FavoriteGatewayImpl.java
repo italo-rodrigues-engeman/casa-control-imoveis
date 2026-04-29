@@ -2,33 +2,46 @@ package com.indux.realestate.modules.realestate.persistence.gateway;
 
 import com.indux.realestate.modules.realestate.domain.entity.Favorite;
 import com.indux.realestate.modules.realestate.domain.gateway.FavoriteGateway;
+import com.indux.realestate.modules.realestate.persistence.model.FavoriteModel;
+import com.indux.realestate.modules.realestate.persistence.repository.FavoriteRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Component
+@RequiredArgsConstructor
 public class FavoriteGatewayImpl implements FavoriteGateway {
 
-    private final Map<String, Favorite> database = new ConcurrentHashMap<>();
+    private final FavoriteRepository repository;
 
     @Override
     public Favorite save(Favorite favorite) {
-        if (favorite.getId() == null) {
-            favorite.setId(UUID.randomUUID().toString());
-        }
-
-        database.put(favorite.getId(), favorite);
-        return favorite;
+        FavoriteModel saved = repository.save(toModel(favorite));
+        return toEntity(saved);
     }
 
     @Override
     public List<Favorite> findByUserId(String userId) {
-        return database.values()
+        return repository.findByUserId(userId)
                 .stream()
-                .filter(favorite -> favorite.getUserId().equals(userId))
+                .map(this::toEntity)
                 .toList();
+    }
+
+    private FavoriteModel toModel(Favorite favorite) {
+        return FavoriteModel.builder()
+                .id(favorite.getId())
+                .userId(favorite.getUserId())
+                .propertyId(favorite.getPropertyId())
+                .build();
+    }
+
+    private Favorite toEntity(FavoriteModel model) {
+        return Favorite.builder()
+                .id(model.getId())
+                .userId(model.getUserId())
+                .propertyId(model.getPropertyId())
+                .build();
     }
 }
