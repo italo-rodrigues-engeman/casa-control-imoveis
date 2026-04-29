@@ -1,0 +1,99 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.page {
+  min-height: 100vh;
+}
+
+.navbar {
+  background: white;
+  color: #111827;
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #2563eb;
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.form {
+  max-width: 420px;
+  margin: 80px auto;
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+
+.button {
+  padding: 9px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+.button.secondary {
+  background: #6b7280;
+}
+
+.button.danger {
+  background: #dc2626;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+.filters {
+  background: white;
+  padding: 16px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
