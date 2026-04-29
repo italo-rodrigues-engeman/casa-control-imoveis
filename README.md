@@ -191,14 +191,6 @@ npm run dev
 
 ---
 
-## 📈 Próximos passos
-
-* Deploy em produção
-* Melhorias de UI/UX
-* Testes automatizados
-* Paginação
-
----
 
 ## 🧠 Autor
 
